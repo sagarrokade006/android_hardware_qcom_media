@@ -18,9 +18,12 @@ libmm-venc-def += -UINPUT_BUFFER_LOG
 libmm-venc-def += -UOUTPUT_BUFFER_LOG
 libmm-venc-def += -USINGLE_ENCODER_INSTANCE
 libmm-venc-def += -Werror
-libmm-venc-def += -Wno-error=literal-suffix
+libOmxVdec-def += -Wno-parentheses
+#libmm-venc-def += -Wno-error=literal-suffix
 libmm-venc-def += -D_ANDROID_ICS_
 libmm-venc-def += -D_MSM8974_
+libmm-venc-def += -Wno-constant-logical-operand
+libmm-venc-def += -Wno-implicit-fallthrough
 
 TARGETS_THAT_USE_FLAG_MSM8226 := msm8226 msm8916 msm8909 msm8952
 TARGETS_THAT_NEED_SW_VENC_MPEG4 := msm8909
@@ -87,7 +90,6 @@ LOCAL_MODULE                    := libOmxVenc
 LOCAL_MODULE_TAGS               := optional
 LOCAL_VENDOR_MODULE             := true
 LOCAL_CFLAGS                    := $(libmm-venc-def)
-LOCAL_CLANG := false
 LOCAL_C_INCLUDES                := $(libmm-venc-inc)
 LOCAL_ADDITIONAL_DEPENDENCIES   := $(libmm-venc-add-dep)
 
@@ -103,6 +105,10 @@ LOCAL_SRC_FILES   := src/omx_video_base.cpp
 LOCAL_SRC_FILES   += src/omx_video_encoder.cpp
 LOCAL_SRC_FILES   += src/video_encoder_device_v4l2.cpp
 LOCAL_SRC_FILES   += src/neon.c
+
+LOCAL_CFLAGS      += -Wno-error
+
+LOCAL_CLANG_CFLAGS    += -Wtautological-pointer-compare
 
 include $(BUILD_SHARED_LIBRARY)
 
@@ -134,7 +140,10 @@ LOCAL_STATIC_LIBRARIES    := libOmxVidcCommon
 
 LOCAL_SRC_FILES   := src/omx_video_base.cpp
 LOCAL_SRC_FILES   += src/omx_swvenc_mpeg4.cpp
-LOCAL_CLANG := false
+
+LOCAL_CFLAGS      += -Wno-error
+
+LOCAL_CLANG_CFLAGS    += -Wtautological-pointer-compare
 
 include $(BUILD_SHARED_LIBRARY)
 endif

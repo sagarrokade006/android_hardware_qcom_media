@@ -1089,10 +1089,10 @@ OMX_ERRORTYPE  omx_video::send_command_proxy(OMX_IN OMX_HANDLETYPE hComp,
     /* Current State is Invalid */
     /*******************************/
     else if (m_state == OMX_StateInvalid) {
-        /* State Transition from Inavlid to any state */
-        if (eState == (OMX_StateLoaded || OMX_StateWaitForResources
-                    || OMX_StateIdle || OMX_StateExecuting
-                    || OMX_StatePause || OMX_StateInvalid)) {
+        /* State Transition from Invalid to any state */
+        if (eState == OMX_StateLoaded || eState == OMX_StateWaitForResources ||
+            eState == OMX_StateIdle || eState == OMX_StateExecuting ||
+            eState == OMX_StatePause || eState == OMX_StateInvalid) {
             DEBUG_PRINT_ERROR("ERROR: OMXCORE-SM: Invalid -->Loaded");
             post_event(OMX_EventError,OMX_ErrorInvalidState,\
                     OMX_COMPONENT_GENERATE_EVENT);
@@ -1688,12 +1688,7 @@ OMX_ERRORTYPE  omx_video::get_parameter(OMX_IN OMX_HANDLETYPE     hComp,
                 comp_role->nSize = sizeof(*comp_role);
 
                 DEBUG_PRINT_LOW("Getparameter: OMX_IndexParamStandardComponentRole %d",paramIndex);
-                if (NULL != comp_role->cRole) {
-                    strlcpy((char*)comp_role->cRole,(const char*)m_cRole,OMX_MAX_STRINGNAME_SIZE);
-                } else {
-                    DEBUG_PRINT_ERROR("ERROR: Getparameter: OMX_IndexParamStandardComponentRole %d is passed with NULL parameter for role",paramIndex);
-                    eRet =OMX_ErrorBadParameter;
-                }
+                strlcpy((char*)comp_role->cRole,(const char*)m_cRole,OMX_MAX_STRINGNAME_SIZE);
                 break;
             }
             /* Added for parameter test */

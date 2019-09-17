@@ -27,6 +27,9 @@ libmm-vdec-def += -DMAX_RES_1080P
 libmm-vdec-def += -DMAX_RES_1080P_EBI
 
 TARGETS_THAT_USE_HEVC_ADSP_HEAP := msm8226 msm8974
+libmm-vdec-def += -Wno-constant-logical-operand
+libmm-vdec-def += -Wno-implicit-fallthrough
+libmm-vdec-def += -Wno-enum-compare-switch
 TARGETS_THAT_HAVE_VENUS_HEVC := apq8084 msm8994
 TARGETS_THAT_NEED_HEVC_LIB := msm8974 msm8610 msm8226 msm8916
 TARGETS_THAT_NEED_SW_HEVC := msm8974 msm8226 msm8916
@@ -121,6 +124,7 @@ LOCAL_SHARED_LIBRARIES  += libqdMetaData
 
 LOCAL_HEADER_LIBRARIES  := media_plugin_headers
 
+
 LOCAL_SRC_FILES         := src/frameparser.cpp
 LOCAL_SRC_FILES         += src/h264_utils.cpp
 LOCAL_SRC_FILES         += src/ts_parser.cpp
@@ -128,8 +132,10 @@ LOCAL_SRC_FILES         += src/mp4_utils.cpp
 LOCAL_SRC_FILES         += src/hevc_utils.cpp
 LOCAL_STATIC_LIBRARIES  := libOmxVidcCommon
 LOCAL_SRC_FILES         += src/omx_vdec_msm8974.cpp
-LOCAL_CLANG := false
 LOCAL_CFLAGS            += -Wno-error
+
+# omx_vdec_msm8974.cpp:9375:16: address of array 'extra->data' will always evaluate to 'true'
+LOCAL_CLANG_CFLAGS      += -Wno-pointer-bool-conversion
 
 include $(BUILD_SHARED_LIBRARY)
 
