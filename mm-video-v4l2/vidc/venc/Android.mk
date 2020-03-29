@@ -56,8 +56,8 @@ endif
 # Common Includes
 libmm-venc-inc      := $(LOCAL_PATH)/inc
 libmm-venc-inc      += $(OMX_VIDEO_PATH)/vidc/common/inc
-libmm-venc-inc      += $(call project-path-for,qcom-media)/mm-core/inc
-libmm-venc-inc      += $(call project-path-for,qcom-media)/libstagefrighthw
+libmm-venc-inc      += hardware/qcom/media/mm-core/inc
+libmm-venc-inc      += hardware/qcom/media/libstagefrighthw
 libmm-venc-inc      += $(TARGET_OUT_HEADERS)/qcom/display
 libmm-venc-inc      += $(TARGET_OUT_HEADERS)/adreno
 libmm-venc-inc      += frameworks/native/include/media/hardware
@@ -69,7 +69,7 @@ endif
 libmm-venc-inc      += frameworks/native/libs/nativewindow/include/
 libmm-venc-inc      += frameworks/native/libs/arect/include/
 libmm-venc-inc      += frameworks/native/libs/nativebase/include
-libmm-venc-inc      += $(call project-path-for,qcom-media)/libc2dcolorconvert
+libmm-venc-inc      += hardware/qcom/media/libc2dcolorconvert
 libmm-venc-inc      += frameworks/av/include/media/stagefright
 
 # ---------------------------------------------------------------------------------
@@ -84,11 +84,12 @@ LOCAL_VENDOR_MODULE             := true
 LOCAL_CFLAGS                    := $(libmm-venc-def)
 LOCAL_C_INCLUDES                := $(libmm-venc-inc)
 
+LOCAL_HEADER_LIBRARIES += display_headers
+
 LOCAL_PRELINK_MODULE      := false
 LOCAL_SHARED_LIBRARIES    := liblog libutils libcutils \
                              libc2dcolorconvert libdl libgui
 
-LOCAL_HEADER_LIBRARIES += display_headers
 LOCAL_SHARED_LIBRARIES += libqdMetaData
 LOCAL_STATIC_LIBRARIES    := libOmxVidcCommon
 
