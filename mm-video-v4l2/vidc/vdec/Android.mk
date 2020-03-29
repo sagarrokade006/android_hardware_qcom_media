@@ -112,6 +112,7 @@ LOCAL_C_INCLUDES                += $(libmm-vdec-inc)
 LOCAL_PRELINK_MODULE    := false
 LOCAL_SHARED_LIBRARIES  := liblog libutils libui libcutils libdl
 
+LOCAL_HEADER_LIBRARIES += display_headers
 LOCAL_SHARED_LIBRARIES  += libqdMetaData
 
 LOCAL_HEADER_LIBRARIES  := media_plugin_headers

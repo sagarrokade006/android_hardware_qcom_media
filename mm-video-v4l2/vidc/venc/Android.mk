@@ -87,6 +87,8 @@ LOCAL_C_INCLUDES                := $(libmm-venc-inc)
 LOCAL_PRELINK_MODULE      := false
 LOCAL_SHARED_LIBRARIES    := liblog libutils libcutils \
                              libc2dcolorconvert libdl libgui
+
+LOCAL_HEADER_LIBRARIES += display_headers
 LOCAL_SHARED_LIBRARIES += libqdMetaData
 LOCAL_STATIC_LIBRARIES    := libOmxVidcCommon
 
