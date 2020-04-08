@@ -13,37 +13,37 @@ OMXCORE_CFLAGS += -Wno-error
 #             Figure out the targets
 #===============================================================================
 
-ifeq ($(TARGET_BOARD_PLATFORM),msm7627a)
+ifeq ($(PRODUCT_BOARD_PLATFORM),msm7627a)
 MM_CORE_TARGET = 7627A
-else ifeq ($(TARGET_BOARD_PLATFORM),msm7630_surf)
+else ifeq ($(PRODUCT_BOARD_PLATFORM),msm7630_surf)
 MM_CORE_TARGET = 7630
-else ifeq ($(TARGET_BOARD_PLATFORM),msm8660)
+else ifeq ($(PRODUCT_BOARD_PLATFORM),msm8660)
 MM_CORE_TARGET = 8660
 #Comment out following line to disable drm.play component
 OMXCORE_CFLAGS += -DENABLE_DRMPLAY
-else ifeq ($(TARGET_BOARD_PLATFORM),msm8960)
+else ifeq ($(PRODUCT_BOARD_PLATFORM),msm8960)
 MM_CORE_TARGET = 8960
-else ifeq ($(TARGET_BOARD_PLATFORM),msm8974)
+else ifeq ($(PRODUCT_BOARD_PLATFORM),msm8974)
 MM_CORE_TARGET = 8974
-else ifeq ($(TARGET_BOARD_PLATFORM),msm8610)
+else ifeq ($(PRODUCT_BOARD_PLATFORM),msm8610)
 MM_CORE_TARGET = 8610
-else ifeq ($(TARGET_BOARD_PLATFORM),msm8226)
+else ifeq ($(PRODUCT_BOARD_PLATFORM),msm8226)
 MM_CORE_TARGET = 8226
-else ifeq ($(TARGET_BOARD_PLATFORM),msm8916)
+else ifeq ($(PRODUCT_BOARD_PLATFORM),msm8916)
 MM_CORE_TARGET = 8916
-else ifeq ($(TARGET_BOARD_PLATFORM),msm8909)
+else ifeq ($(PRODUCT_BOARD_PLATFORM),msm8909)
 MM_CORE_TARGET = 8909
-else ifeq ($(TARGET_BOARD_PLATFORM),apq8084)
+else ifeq ($(PRODUCT_BOARD_PLATFORM),apq8084)
 MM_CORE_TARGET = 8084
-else ifeq ($(TARGET_BOARD_PLATFORM),mpq8092)
+else ifeq ($(PRODUCT_BOARD_PLATFORM),mpq8092)
 MM_CORE_TARGET = 8092
-else ifeq ($(TARGET_BOARD_PLATFORM),msm8992)
+else ifeq ($(PRODUCT_BOARD_PLATFORM),msm8992)
 MM_CORE_TARGET = msm8992
-else ifeq ($(TARGET_BOARD_PLATFORM),msm8994)
+else ifeq ($(PRODUCT_BOARD_PLATFORM),msm8994)
 MM_CORE_TARGET = msm8994
-else ifeq ($(TARGET_BOARD_PLATFORM),thulium)
+else ifeq ($(PRODUCT_BOARD_PLATFORM),thulium)
 MM_CORE_TARGET = thulium
-else ifeq ($(TARGET_BOARD_PLATFORM),msm8952)
+else ifeq ($(PRODUCT_BOARD_PLATFORM),msm8952)
 MM_CORE_TARGET = 8952
 else
 MM_CORE_TARGET = default
@@ -101,7 +101,7 @@ LOCAL_CFLAGS            := $(OMXCORE_CFLAGS)
 
 LOCAL_SRC_FILES         := src/common/omx_core_cmp.cpp
 LOCAL_SRC_FILES         += src/common/qc_omx_core.c
-ifneq (,$(filter msm8916 msm8994 msm8909 thulium msm8992 msm8952,$(TARGET_BOARD_PLATFORM)))
+ifneq (,$(filter msm8916 msm8994 msm8909 thulium msm8992 msm8952,$(PRODUCT_BOARD_PLATFORM)))
 LOCAL_SRC_FILES         += src/$(MM_CORE_TARGET)/registry_table_android.c
 else
 LOCAL_SRC_FILES         += src/$(MM_CORE_TARGET)/qc_registry_table_android.c
@@ -126,7 +126,7 @@ LOCAL_CFLAGS            := $(OMXCORE_CFLAGS)
 
 LOCAL_SRC_FILES         := src/common/omx_core_cmp.cpp
 LOCAL_SRC_FILES         += src/common/qc_omx_core.c
-ifneq (,$(filter msm8916 msm8994 msm8909 thulium msm8992 msm8952,$(TARGET_BOARD_PLATFORM)))
+ifneq (,$(filter msm8916 msm8994 msm8909 thulium msm8992 msm8952,$(PRODUCT_BOARD_PLATFORM)))
 LOCAL_SRC_FILES         += src/$(MM_CORE_TARGET)/registry_table.c
 else
 LOCAL_SRC_FILES         += src/$(MM_CORE_TARGET)/qc_registry_table.c

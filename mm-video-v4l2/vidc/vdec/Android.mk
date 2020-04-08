@@ -39,7 +39,7 @@ ifeq ($(call is-board-platform-in-list, $(TARGETS_THAT_HAVE_VENUS_HEVC)),true)
 libmm-vdec-def += -DVENUS_HEVC
 endif
 
-ifeq ($(TARGET_BOARD_PLATFORM),msm8610)
+ifeq ($(PRODUCT_BOARD_PLATFORM),msm8610)
 libmm-vdec-def += -DSMOOTH_STREAMING_DISABLED
 libmm-vdec-def += -DH264_PROFILE_LEVEL_CHECK
 endif
